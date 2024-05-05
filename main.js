@@ -3,12 +3,10 @@
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 
-function openMenu() {
-    console.log("Menu telah di tekan")
+menuIcon.onclick = () => {
     menuIcon.classList.toggle('fa-xmark');
-    navbar.classList.toggle('active');
+    navbar.classList.toggle('active')
 }
-menuIcon.addEventListener('click', openMenu)
 
 /*==================================== scroll section active link ====================================*/
 
@@ -23,13 +21,12 @@ window.onscroll = () => {
         let id = sec.getAttribute('id');
 
         if(top >= offset && top < offset + height) {
-            navLinks.forEach.apply(links => {
+            navLinks.forEach(links => {
                 links.classList.remove('active');
                 document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
             });
         };
     });
-
 
     /*==================================== sticky navbar ====================================*/
     let header = document.querySelector('header');
@@ -38,4 +35,11 @@ window.onscroll = () => {
     /*==================================== remove toggle icon and navbar ====================================*/
     menuIcon.classList.remove('fa-xmark');
     navbar.classList.remove('active');
+};
+
+/*==================================== clear form before unload ====================================*/
+ window.onbeforeunload = () => {
+    for (const form of document.getElementsByTagName("form")) {
+        form.reset();
+    }
 };
